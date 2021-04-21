@@ -1,1 +1,1 @@
-# Ansible playbook for adding users in Ubuntu
+# Ansible playbook for adding users and uploading public keys in Ubuntu
