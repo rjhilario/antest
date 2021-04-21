@@ -5,9 +5,4 @@
     - role: users
       users:
         - roden
-<<<<<<< HEAD
-=======
-      #delete_users:
->>>>>>> 1efa74eb230a7f295f97322f8df642d7f9b83d00
-
 
