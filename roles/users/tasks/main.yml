@@ -1,0 +1,42 @@
+---
+- name: Install required packages
+  package:
+    name: '{{ packages }}'
+
+- name: Create group sysadmin
+  group:
+    name: "sysadmin"
+
+- name: Create user accounts
+  user:
+    name: "{{ item }}"
+    shell: /bin/bash
+    groups: sudo,sysadmin
+    append: yes
+  loop: "{{ users }}"
+  when: users is defined
+
+- name: Ansible Create file p2sudoers
+  copy:
+    dest: "/etc/sudoers.d/p2sudoers"
+    mode: 0440
+    content: |
+      # Created by Ansible role users
+      # groupadd -f sysadmin
+      # usermod --append -G sysadmin myuser
+      # Members of the group 'sysadmin' may gain root privileges
+      %sysadmin ALL=(ALL) NOPASSWD:ALL
+
+#- name: Delete user accounts
+#  user:
+#    name: '{{ item }}'
+#    state: absent
+#  loop: '{{ delete_users }}'
+#  when: delete_users is defined
+
+- name: "Add authorized keys"
+  authorized_key:
+    user: "{{ item }}"
+    key: "{{ lookup('file', 'public_keys/'+ item + '_rsa.pub') }}"
+  with_items: "{{ users }}"
+  when: users is defined
