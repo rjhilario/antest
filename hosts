@@ -1,0 +1,12 @@
+[test]
+test01 ansible_host=136.144.49.15 ansible_user=root ansible_ssh_port=22
+test02 ansible_host=147.75.43.137 ansible_user=root ansible_ssh_port=22
+test03 ansible_host=147.75.94.97 ansible_user=root ansible_ssh_port=22
+
+#[prod]
+#worker1 ansible_host=x.x.x.x ansible_user=root ansible_ssh_port=2342
+#master1 ansible_host=x.x.x.x ansible_user=root ansible_ssh_port=2342
+#master2 ansible_host=x.x.x.x ansible_user=root ansible_ssh_port=2342
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
