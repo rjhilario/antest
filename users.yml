@@ -1,4 +1,3 @@
-# ansible-playbook users.yml -i inventory_are.ini  
 ---
 - hosts: all
   become: true
